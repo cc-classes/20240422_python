@@ -1,0 +1,64 @@
+{
+  "name": "Python Development Workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "charliermarsh.ruff",
+        "ms-python.mypy-type-checker",
+        "ms-python.python",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-sqlite",
+        "DavidAnson.vscode-markdownlint"
+      ],
+      "settings": {
+        "extensions.ignoreRecommendations": true,
+        "editor.formatOnSave": true,
+        "editor.minimap.enabled": false,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "explorer.compactFolders": false,
+        "terminal.integrated.tabs.enabled": false,
+        "files.autoSave": "afterDelay",
+        "workbench.startupEditor": "none",
+        "window.zoomLevel": 1,
+        "[markdown]": {
+          "editor.wordWrap": "on",
+          "editor.indentSize": 2,
+          "editor.rulers": []
+        },
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true,
+          "editor.tabSize": 4,
+          "editor.inlayHints.enabled": "on",
+          "editor.rulers": [
+            79
+          ]
+        },
+        "mypy-type-checker.severity": {
+          "error": "Error",
+          "warning": "Error",
+          "note": "Error",
+          "info": "Error"
+        },
+        "mypy-type-checker.args": [
+          "--config-file=.vscode/mypy.ini"
+        ],
+        "ruff.format.args": [
+          "--line-length",
+          "79"
+        ],
+        "ruff.lint.args": [
+          "--line-length",
+          "79",
+          "--select",
+          "E,F,W,N"
+        ]
+      }
+    }
+  },  
+  "dockerFile": "Dockerfile"
+}
