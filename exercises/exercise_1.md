@@ -23,3 +23,7 @@
     - Result: <previous result + 10>
 
 4. If the user types an unknown command, display an error for unknown command, and ask for the next command.
+
+## When Done
+
+Send me an email [eric@cloudcontraptions.com](mailto:eric@cloudcontraptions.com) when you are done.
