@@ -49,6 +49,12 @@ def main() -> None:
                         f"operand: {entry_operand}"
                     )
                 )
+        elif command == "remove":
+            entry_id = int(input("Enter entry id: "))
+            for entry in history:
+                if entry["id"] == entry_id:
+                    history.remove(entry)
+                    break
         elif command == "clear":
             result = 0.0
             history.clear()
