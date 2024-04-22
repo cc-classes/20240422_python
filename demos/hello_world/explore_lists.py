@@ -1,5 +1,6 @@
 from typing import Any
 
+items: list[Any] = [1, "cool", lambda x: x + 1, {"name": "Bob"}, True]
 
 nums: list[int] = [1, 2, 3, 4, 5]
 
@@ -11,6 +12,7 @@ people: list[dict[str, Any]] = [
     {"name": "Bob", "age": 23, "hair_color": "brown"},
     {"name": "Alice", "age": 25, "hair_color": "brown"},
     {"name": "Charlie", "age": 27, "hair_color": "brown"},
+    {"name": "Diana", "age": 31, "hair_color": "brown"},
 ]
 
 for person in people:
