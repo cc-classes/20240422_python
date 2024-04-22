@@ -38,3 +38,12 @@ print(person.get("middle_name", "N/A"))
 
 # remove a key-value pair
 del person["hair_color"]
+
+# the dictionary object will now be garbage collected
+# person = None
+
+
+for num in range(10):
+    person = {}
+
+    person["num"] = num
