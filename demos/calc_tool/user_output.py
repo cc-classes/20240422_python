@@ -1,11 +1,11 @@
-from typing import Any
+from history import HistoryEntry
 
 
-def print_history_entries(history: list[dict[str, Any]]) -> None:
+def print_history_entries(history: list[HistoryEntry]) -> None:
     for entry in history:
-        entry_id = entry["id"]
-        entry_command = entry["command"]
-        entry_operand = entry["operand"]
+        entry_id = entry.id
+        entry_command = entry.command
+        entry_operand = entry.operand
         print(
             (
                 f"id: {entry_id}, "

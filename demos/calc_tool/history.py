@@ -1,30 +1,32 @@
-from typing import Any
+class HistoryEntry:
+    def __init__(self, entry_id: int, operation: str, operand: float) -> None:
+        self.id = entry_id
+        self.command = operation
+        self.operand = operand
+
+    def __str__(self) -> str:
+        return f"{self.id}: {self.command} {self.operand}"
 
 
-def next_entry_id(history: list[dict[str, Any]]) -> int:
-    if history:
-        return max(entry["id"] for entry in history) + 1
-    return 1
+class History:
+    def __init__(self) -> None:
+        self.history: list[HistoryEntry] = []
 
+    def next_entry_id(self) -> int:
+        if self.history:
+            return max(entry.id for entry in self.history) + 1
+        return 1
 
-def append_history_entry(
-    operation: str, operand: float, history: list[dict[str, Any]]
-) -> None:
-    history.append(
-        {
-            "id": next_entry_id(history),
-            "command": operation,
-            "operand": operand,
-        }
-    )
+    def append_history_entry(self, operation: str, operand: float) -> None:
+        self.history.append(
+            HistoryEntry(self.next_entry_id(), operation, operand)
+        )
 
+    def remove_history_entry(self, entry_id: int) -> None:
+        for entry in self.history:
+            if entry.id == entry_id:
+                self.history.remove(entry)
+                break
 
-def remove_history_entry(entry_id: int, history: list[dict[str, Any]]) -> None:
-    for entry in history:
-        if entry["id"] == entry_id:
-            history.remove(entry)
-            break
-
-
-def clear_history_entries(history: list[dict[str, Any]]) -> None:
-    history.clear()
+    def clear_history_entries(self) -> None:
+        self.history.clear()
