@@ -1,5 +1,11 @@
+from typing import Protocol
+
 # History Protocol
 from history import History
+
+class HistoryReporter(Protocol):
+    def print_history_entries(self) -> None:
+        ...
 
 
 # low level: HistoryConsoleReporter -> History
