@@ -1,20 +1,19 @@
+# History Protocol
 from history import History
 
-#low level: HistoryConsoleReporter -> History
+
+# low level: HistoryConsoleReporter -> History
 class HistoryConsoleReporter:
     def __init__(self, history: History) -> None:
         self.history = history
 
     def print_history_entries(self) -> None:
-        for entry in self.history.history:
-            entry_id = entry.id
-            entry_command = entry.command
-            entry_operand = entry.operand
+        for entry in self.history.get_history():
             print(
                 (
-                    f"id: {entry_id}, "
-                    f"command: {entry_command}, "
-                    f"operand: {entry_operand}"
+                    f"id: {entry[0]} "
+                    f"operation: {entry[1]} "
+                    f"operand: {entry[2]}"
                 )
             )
 
@@ -26,31 +25,14 @@ class HistoryFileReporter:
 
     def print_history_entries(self) -> None:
         with open(self.file_name, "w") as file:
-            for entry in self.history.history:
-                entry_id = entry.id
-                entry_command = entry.command
-                entry_operand = entry.operand
+            for entry in self.history.get_history():
                 file.write(
                     (
-                        f"id: {entry_id}, "
-                        f"command: {entry_command}, "
-                        f"operand: {entry_operand}\n"
+                        f"id: {entry[0]} "
+                        f"operation: {entry[1]} "
+                        f"operand: {entry[2]}"
                     )
                 )
-
-
-def print_history_entries(history: list[HistoryEntry]) -> None:
-    for entry in history:
-        entry_id = entry.id
-        entry_command = entry.command
-        entry_operand = entry.operand
-        print(
-            (
-                f"id: {entry_id}, "
-                f"command: {entry_command}, "
-                f"operand: {entry_operand}"
-            )
-        )
 
 
 def print_invalid_command(command: str) -> None:
