@@ -99,7 +99,8 @@ def main() -> None:
             if command == "divide" and operand == 0:
                 print_error("Cannot divide by zero")
                 continue
-            result = calc_fns[command](result, operand)
+            calc_fn = calc_fns[command]
+            result = calc_fn(result, operand)
             append_history_entry(command, operand, history)
         elif command == "history":
             print_history_entries(history)
