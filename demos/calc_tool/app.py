@@ -1,5 +1,12 @@
 from typing import Any, Callable
 
+calc_fns: dict[str, Callable[[float, float], float]] = {
+    "add": lambda x, y: x + y,
+    "subtract": lambda x, y: x - y,
+    "multiply": lambda x, y: x * y,
+    "divide": lambda x, y: x / y,
+}
+
 
 def input_str(prompt: str) -> str:
     return input(prompt + " > ")
@@ -80,16 +87,18 @@ def print_error(message: str) -> None:
     print(f"Error: {message}")
 
 
-def main() -> None:
+def calculator_result(history: list[dict[str, Any]]) -> float:
     result = 0.0
-    history: list[dict[str, Any]] = []
+    for entry in history:
+        command = entry["command"]
+        operand = entry["operand"]
+        calc_fn = calc_fns[command]
+        result = calc_fn(result, operand)
+    return result
 
-    calc_fns: dict[str, Callable[[float, float], float]] = {
-        "add": lambda x, y: x + y,
-        "subtract": lambda x, y: x - y,
-        "multiply": lambda x, y: x * y,
-        "divide": lambda x, y: x / y,
-    }
+
+def main() -> None:
+    history: list[dict[str, Any]] = []
 
     while True:
         command = get_command()
@@ -99,15 +108,12 @@ def main() -> None:
             if command == "divide" and operand == 0:
                 print_error("Cannot divide by zero")
                 continue
-            calc_fn = calc_fns[command]
-            result = calc_fn(result, operand)
             append_history_entry(command, operand, history)
         elif command == "history":
             print_history_entries(history)
         elif command == "remove":
             remove_history_entry(get_entry_id(), history)
         elif command == "clear":
-            result = 0.0
             clear_history_entries(history)
         elif command == "exit":
             return
@@ -115,7 +121,7 @@ def main() -> None:
             print_invalid_command(command)
             continue
 
-        print_result(result)
+        print_result(calculator_result(history))
 
 
 if __name__ == "__main__":
