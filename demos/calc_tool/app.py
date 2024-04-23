@@ -1,6 +1,7 @@
 from user_input import get_command, get_operand, get_entry_id
 from user_output import (
-    print_history_entries,
+    HistoryConsoleReporter,
+    HistoryFileReporter,
     print_invalid_command,
     print_result,
     print_error,
@@ -22,7 +23,7 @@ def main() -> None:
                 continue
             history.append_history_entry(command, operand)
         elif command == "history":
-            print_history_entries(history.history)
+            HistoryFileReporter(history, "entries.txt").print_history_entries()
         elif command == "remove":
             history.remove_history_entry(get_entry_id())
         elif command == "clear":
