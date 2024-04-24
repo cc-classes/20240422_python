@@ -22,6 +22,8 @@ people_obj = [
 
 
 def main() -> None:
+    # purpose of the with is to close the file after the block of
+    # code is executed
     with open("data.json", "w") as file:
         json.dump([p.__dict__ for p in people_obj], file)
 
