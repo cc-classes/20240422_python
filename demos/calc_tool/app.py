@@ -1,4 +1,3 @@
-from typing import Protocol
 from user_input import get_command, get_operand, get_entry_id
 from user_output import (
     HistoryConsoleReporter,
@@ -11,6 +10,12 @@ from calculator import calculator_result, calc_fns
 from history_obj import HistoryObj
 from history_dict import HistoryDict
 from history import History
+
+
+def create_history_factory(kind: str = "obj") -> History:
+    if kind == "dict":
+        return HistoryDict()
+    return HistoryObj()
 
 
 class CalculatorTool:
@@ -46,7 +51,7 @@ class CalculatorTool:
 
 
 def main() -> None:
-    history = HistoryObj()
+    history = create_history_factory("obj")
     calculator_tool = CalculatorTool(history)
     calculator_tool.run()
 
