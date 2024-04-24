@@ -58,5 +58,18 @@ cart.add_item(Product(3, "plums", 5.00))
 
 # for-in loop will call iter(cart) -> instance of CartIterator
 # on each iteration it calls next(cart_iterator) -> an item in the list
-for item in cart:
-    print(item.name)
+
+# Eric's homemade implementation of the for-in loop
+
+try:
+    cart_iter = iter(cart)
+    while True:
+        item = next(cart_iter)
+        print(item.name)
+except StopIteration:
+    ...
+
+print("keep on running")
+
+# for item in cart:
+#     print(item.name)
