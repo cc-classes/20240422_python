@@ -12,6 +12,10 @@ class History(Protocol):
 
     def clear_history_entries(self) -> None: ...
 
+    def save_history(self) -> None: ...
+
+    def load_history(self) -> None: ...
+
 
 # class Person:
 #     def full_name(self) -> str:

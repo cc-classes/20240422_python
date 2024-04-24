@@ -1,4 +1,5 @@
 from typing import TypedDict
+import json
 
 
 class HistoryEntryDict(TypedDict):
@@ -42,3 +43,11 @@ class HistoryDict:
 
     def clear_history_entries(self) -> None:
         self.__history.clear()
+
+    def save_history(self) -> None:
+        with open("history.json", "w") as file:
+            json.dump(self.__history, file)
+
+    def load_history(self) -> None:
+        with open("history.json", "r") as file:
+            self.__history = json.load(file)

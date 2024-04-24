@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 
 from user_input import get_command, get_operand, get_entry_id
 from user_output import (
@@ -28,6 +29,14 @@ class CalculatorTool:
         while True:
             command = get_command()
 
+            with open("command-log.txt", "a") as command_log_file:
+                command_log_file.write(
+                    (
+                        f"timestamp: {datetime.now().isoformat()}"
+                        f", command: {command}\n"
+                    )
+                )
+
             if command in calc_fns:
                 try:
                     operand = get_operand()
@@ -44,6 +53,10 @@ class CalculatorTool:
                 ).print_history_entries()
             elif command == "remove":
                 self.history.remove_history_entry(get_entry_id())
+            elif command == "save":
+                self.history.save_history()
+            elif command == "load":
+                self.history.load_history()
             elif command == "clear":
                 self.history.clear_history_entries()
             elif command == "exit":
