@@ -1,3 +1,5 @@
+import logging
+
 from user_input import get_command, get_operand, get_entry_id
 from user_output import (
     HistoryConsoleReporter,
@@ -27,11 +29,14 @@ class CalculatorTool:
             command = get_command()
 
             if command in calc_fns:
-                operand = get_operand()
-                if command == "divide" and operand == 0:
-                    print_error("Cannot divide by zero")
+                try:
+                    operand = get_operand()
+                    if command == "divide" and operand == 0:
+                        raise ZeroDivisionError("Cannot divide by zero")
+                    self.history.append_history_entry(command, operand)
+                except ZeroDivisionError as e:
+                    logging.error(e)
                     continue
-                self.history.append_history_entry(command, operand)
             elif command == "history":
                 HistoryConsoleReporter(self.history).print_history_entries()
                 HistoryFileReporter(
@@ -45,9 +50,19 @@ class CalculatorTool:
                 return
             else:
                 print_invalid_command(command)
+                logging.warning(f"Invalid command: {command}")
                 continue
 
-            print_result(calculator_result(self.history))
+            try:
+                print_result(calculator_result(self.history))
+            except ZeroDivisionError as e:
+                logging.error(e)
+                print(
+                    (
+                        "Unable to display result, error in history of "
+                        "operations, please clear or remove before proceeding,"
+                    )
+                )
 
 
 def main() -> None:

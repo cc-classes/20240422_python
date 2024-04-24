@@ -2,11 +2,18 @@ from typing import Callable
 
 from history import History
 
+
+def divide(x: float, y: float) -> float:
+    if y == 0:
+        raise ZeroDivisionError("Cannot divide by zero")
+    return x / y
+
+
 calc_fns: dict[str, Callable[[float, float], float]] = {
     "add": lambda x, y: x + y,
     "subtract": lambda x, y: x - y,
     "multiply": lambda x, y: x * y,
-    "divide": lambda x, y: x / y,
+    "divide": divide,
 }
 
 
