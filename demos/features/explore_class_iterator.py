@@ -22,12 +22,28 @@ class Product:
         return self.__price
 
 
+class CartIterator:
+    def __init__(self, items):
+        self.__items = items
+        self.__current_index = -1
+
+    # magic method - is a method connected into Python's operator system
+    def __next__(self):
+        self.__current_index += 1
+        if self.__current_index >= len(self.__items):
+            raise StopIteration()
+        return self.__items[self.__current_index]
+
+
 class Cart:
     def __init__(self):
-        self.items = []
+        self.__items = []
 
     def add_item(self, product):
-        self.items.append(product)
+        self.__items.append(product)
+
+    def __iter__(self):
+        return CartIterator(self.__items)
 
 
 cart = Cart()
@@ -40,3 +56,7 @@ cart.add_item(Product(3, "plums", 5.00))
 # use the code above, iterate over the shopping cart
 # and display the product names
 
+# for-in loop will call iter(cart) -> instance of CartIterator
+# on each iteration it calls next(cart_iterator) -> an item in the list
+for item in cart:
+    print(item.name)
