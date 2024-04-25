@@ -14,7 +14,7 @@ from calculator import calculator_result, calc_fns
 from history_obj import HistoryObj
 from history_dict import HistoryDict
 from history import History
-from history_storage import HistoryStorage
+from history_storage import get_history_storage
 
 config_file_path = Path("config.yml")
 with config_file_path.open("r", encoding="UTF-8") as config_file:
@@ -71,8 +71,6 @@ def parse_command(command: str) -> tuple[str, str | None]:
 class CalculatorTool:
     def __init__(self, history: History):
         self.__history = history
-
-        self.__history_storage = HistoryStorage(self.__history)
 
     def display_result(self) -> None:
         try:
@@ -132,11 +130,15 @@ class CalculatorTool:
             elif command_name == "save":
                 if not command_arg:
                     command_arg = "history.json"
-                self.__history_storage.save_history(command_arg)
+                get_history_storage(command_arg, self.__history).save_history(
+                    command_arg
+                )
             elif command_name == "load":
                 if not command_arg:
                     command_arg = "history.json"
-                self.__history_storage.load_history(command_arg)
+                get_history_storage(command_arg, self.__history).load_history(
+                    command_arg
+                )
             elif command_name == "clear":
                 self.__history.clear_history_entries()
             elif command_name == "exit":

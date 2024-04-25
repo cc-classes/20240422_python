@@ -16,3 +16,15 @@ timestamp: 2024-04-25T18:36:24.003258, command: load, args: cool.json
 timestamp: 2024-04-25T18:36:28.016610, command: history, args: None
 timestamp: 2024-04-25T21:59:16.510813, command: add, args: 3
 timestamp: 2024-04-25T21:59:25.528705, command: exit, args: None
+timestamp: 2024-04-25T23:45:54.779853, command: add, args: 2
+timestamp: 2024-04-25T23:46:00.458544, command: save, args: history.csv
+timestamp: 2024-04-25T23:46:01.901240, command: clear, args: None
+timestamp: 2024-04-25T23:46:03.985935, command: history, args: None
+timestamp: 2024-04-25T23:46:08.800602, command: load, args: history.csv
+timestamp: 2024-04-25T23:46:57.741998, command: add, args: 3
+timestamp: 2024-04-25T23:47:04.374948, command: save, args: history.csv
+timestamp: 2024-04-25T23:47:07.315443, command: clear, args: None
+timestamp: 2024-04-25T23:47:08.683111, command: history, args: None
+timestamp: 2024-04-25T23:47:13.338409, command: load, args: history.csv
+timestamp: 2024-04-25T23:47:17.287981, command: history, args: None
+timestamp: 2024-04-25T23:47:21.182296, command: exit, args: None
