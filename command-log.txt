@@ -7,3 +7,10 @@ timestamp: 2024-04-25T01:44:28.068022, command: save
 timestamp: 2024-04-25T01:44:31.791272, command: clear
 timestamp: 2024-04-25T01:44:32.564570, command: load
 timestamp: 2024-04-25T01:44:36.609042, command: exit
+timestamp: 2024-04-25T18:35:45.034218, command: add, args: None
+timestamp: 2024-04-25T18:36:03.381624, command: add, args: 3
+timestamp: 2024-04-25T18:36:13.335978, command: subtract, args: 10
+timestamp: 2024-04-25T18:36:17.219203, command: save, args: cool.json
+timestamp: 2024-04-25T18:36:18.498466, command: clear, args: None
+timestamp: 2024-04-25T18:36:24.003258, command: load, args: cool.json
+timestamp: 2024-04-25T18:36:28.016610, command: history, args: None
