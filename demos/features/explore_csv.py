@@ -1,0 +1,33 @@
+from pathlib import Path
+import csv
+
+
+def write_csv() -> None:
+    names_file_path = Path("names.csv")
+    with names_file_path.open("w", encoding="UTF-8") as names_file:
+        names_csv_writer = csv.writer(names_file, delimiter=",")
+        names_csv_writer.writerow(["first_name", "last_name"])
+        names_csv_writer.writerow(["Bob", "Smith"])
+        names_csv_writer.writerow(["Alice", "Springs"])
+        names_csv_writer.writerow(["Jim", "Timmons"])
+        names_csv_writer.writerow(["Sally", "Wakefield"])
+
+
+def read_csv() -> None:
+    names_file_path = Path("names.csv")
+    with names_file_path.open("r", encoding="UTF-8") as names_file:
+        names_csv_reader = csv.reader(names_file, delimiter=",")
+
+        next(names_csv_reader)
+
+        for name_row in names_csv_reader:
+            print(name_row)
+
+
+def main() -> None:
+    # write_csv()
+    read_csv()
+
+
+if __name__ == "__main__":
+    main()

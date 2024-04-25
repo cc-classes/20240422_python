@@ -1,4 +1,6 @@
 import logging
+import yaml
+from pathlib import Path
 from datetime import datetime
 
 from user_input import get_command, get_operand, get_entry_id
@@ -13,6 +15,32 @@ from history_obj import HistoryObj
 from history_dict import HistoryDict
 from history import History
 from history_storage import HistoryStorage
+
+config_file_path = Path("config.yml")
+with config_file_path.open("r", encoding="UTF-8") as config_file:
+    config = yaml.load(config_file, Loader=yaml.SafeLoader)
+
+# def get_log_level(level: str) -> int:
+#     if level == "DEBUG":
+#         return logging.DEBUG
+#     elif level == "INFO":
+#         return logging.INFO
+#     elif level == "WARNING":
+#         return logging.WARNING
+#     elif level == "ERROR":
+#         return logging.ERROR
+#     elif level == "CRITICAL":
+#         return logging.CRITICAL
+#     else:
+#         return logging.WARNING
+
+
+logging.basicConfig(
+    filename=config["log_file"],
+    # level=get_log_level(config["log_level"]),
+    level=getattr(logging, config["log_level"], logging.WARNING),
+    format="%(levelname)s: %(message)s",
+)
 
 
 def create_history_factory(kind: str = "obj") -> History:
@@ -73,6 +101,7 @@ class CalculatorTool:
             print("Invalid division by zero")
 
     def run(self) -> None:
+        logging.log(logging.INFO, "app started")
         while True:
             try:
                 command_name, command_arg = parse_command(get_command())

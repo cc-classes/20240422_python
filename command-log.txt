@@ -14,3 +14,5 @@ timestamp: 2024-04-25T18:36:17.219203, command: save, args: cool.json
 timestamp: 2024-04-25T18:36:18.498466, command: clear, args: None
 timestamp: 2024-04-25T18:36:24.003258, command: load, args: cool.json
 timestamp: 2024-04-25T18:36:28.016610, command: history, args: None
+timestamp: 2024-04-25T21:59:16.510813, command: add, args: 3
+timestamp: 2024-04-25T21:59:25.528705, command: exit, args: None
