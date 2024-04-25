@@ -3,9 +3,9 @@ from typing import Protocol
 # History Protocol
 from history import History
 
+
 class HistoryReporter(Protocol):
-    def print_history_entries(self) -> None:
-        ...
+    def print_history_entries(self) -> None: ...
 
 
 # low level: HistoryConsoleReporter -> History
@@ -14,7 +14,7 @@ class HistoryConsoleReporter:
         self.history = history
 
     def print_history_entries(self) -> None:
-        for entry in self.history.get_history():
+        for entry in self.history:
             print(
                 (
                     f"id: {entry[0]} "
@@ -31,7 +31,7 @@ class HistoryFileReporter:
 
     def print_history_entries(self) -> None:
         with open(self.file_name, "w") as file:
-            for entry in self.history.get_history():
+            for entry in self.history:
                 file.write(
                     (
                         f"id: {entry[0]} "

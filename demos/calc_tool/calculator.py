@@ -19,7 +19,7 @@ calc_fns: dict[str, Callable[[float, float], float]] = {
 
 def calculator_result(history: History) -> float:
     result = 0.0
-    for entry in history.get_history():
+    for entry in history:
         command = entry[1]
         operand = entry[2]
         calc_fn = calc_fns[command]
