@@ -6,10 +6,14 @@ class Person:
         self.__first_name = fn
         self.__last_name = ln
 
+    @staticmethod
+    def parse_full_name(full_name_str: str) -> tuple[str, str]:
+        return full_name_str.split(" ")
+
     @classmethod
     def from_full_name(cls, name: str) -> Person:
         # calls Person(name_part[0], name_part[1])
-        return cls(*name.split(" "))
+        return cls(*Person.parse_full_name(name))
 
     @property
     def first_name(self) -> str:
