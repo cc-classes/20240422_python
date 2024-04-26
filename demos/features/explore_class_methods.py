@@ -1,7 +1,15 @@
+from __future__ import annotations
+
+
 class Person:
     def __init__(self, fn: str, ln: str) -> None:
         self.__first_name = fn
         self.__last_name = ln
+
+    @classmethod
+    def from_full_name(cls, name: str) -> Person:
+        # calls Person(name_part[0], name_part[1])
+        return cls(*name.split(" "))
 
     @property
     def first_name(self) -> str:
@@ -45,3 +53,8 @@ print(id(p1.full_name))
 # instance method function object
 # instance method binds the self variable to the object instance
 print(id(p2.full_name))
+
+p3 = Person.from_full_name("Tommy Jones")
+print(p3.full_name())
+print(p3.first_name)
+print(p3.last_name)
