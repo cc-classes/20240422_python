@@ -1,0 +1,2 @@
+log_level: DEBUG
+log_file: calc-app2.log

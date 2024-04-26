@@ -1,12 +1,7 @@
 from __future__ import annotations
-from typing import Protocol
 from pathlib import Path
 import yaml
 import logging
-
-
-class CommandLineArgs(Protocol):
-    config: str
 
 
 class AppSettings:
