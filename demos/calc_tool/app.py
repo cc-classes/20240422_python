@@ -13,6 +13,7 @@ from history_obj import HistoryObj
 from history_dict import HistoryDict
 from history import History
 from history_storage import get_history_storage
+from app_settings import AppSettings
 
 
 def create_history_factory(kind: str = "obj") -> History:
@@ -41,7 +42,8 @@ def parse_command(command: str) -> tuple[str, str | None]:
 
 
 class CalculatorTool:
-    def __init__(self, history: History):
+    def __init__(self, app_settings: AppSettings, history: History):
+        self.__app_settings = app_settings
         self.__history = history
 
     def display_result(self) -> None:
@@ -76,7 +78,9 @@ class CalculatorTool:
             try:
                 command_name, command_arg = parse_command(get_command())
 
-                with open("command-log.txt", "a") as command_log_file:
+                with open(
+                    self.__app_settings.command_log_file, "a"
+                ) as command_log_file:
                     command_log_file.write(
                         (
                             f"timestamp: {datetime.now().isoformat()}"
@@ -121,8 +125,15 @@ class CalculatorTool:
 
 
 def main() -> None:
+    # builder pattern which is being done with the chain pattern
+    app_settings = (
+        AppSettings()
+        .command_line_args()
+        .load_app_configuration()
+        .configure_logging()
+    )
     history = create_history_factory("obj")
-    calculator_tool = CalculatorTool(history)
+    calculator_tool = CalculatorTool(app_settings, history)
     calculator_tool.run()
 
 

@@ -14,6 +14,7 @@ class AppSettings:
     log_file = Path("calc-app.log")
     log_level = logging.WARNING
     log_format = "%(levelname)s: %(message)s"
+    command_log_file = Path("command-log.txt")
 
     def command_line_args(self) -> AppSettings:
         from argparse import ArgumentParser
@@ -43,6 +44,8 @@ class AppSettings:
                 self.log_level = getattr(
                     logging, config["log_level"], logging.WARNING
                 )
+            if "command_log_file" in config:
+                self.command_log_file = Path(config["command_log_file"])
 
         return self
 
