@@ -1,7 +1,13 @@
+from typing import Any
+
+
 class Person:
     def __init__(self, fn: str, ln: str) -> None:
         self.__first_name = fn
         self.__last_name = ln
+
+    def __setattr__(self, name: str, value: Any) -> None:
+        print(f"setting {name}")
 
     @property
     def first_name(self) -> str:
@@ -25,5 +31,5 @@ class Person:
 
 
 person = Person("Bob", "Smith")
-person.first_name = None
+person.first_name = "Bob"
 person.last_name = "Smith"
